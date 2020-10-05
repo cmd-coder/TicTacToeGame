@@ -59,6 +59,8 @@ namespace TicTacToeGame
                 else
                     Console.WriteLine("The entered position is already occupied");
             }
+            board[position] = Convert.ToChar(choice);
+            UC3_showBoard();
         }
 
     }
