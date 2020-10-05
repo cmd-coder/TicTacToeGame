@@ -6,12 +6,14 @@ namespace TicTacToeGame
     {
         static char[] board = new char[10];
         static string choice = "";
+        static int position = 0;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Tic Tac Toe");
             UC1_initialize();
             UC2_symbol();
             UC3_showBoard();
+            movePosition();
         }
 
         static void UC1_initialize()
@@ -43,6 +45,19 @@ namespace TicTacToeGame
                     Console.WriteLine();
                     Console.WriteLine("--------------------");
                 }
+            }
+        }
+
+        static void movePosition()
+        {
+            while(true)
+            {
+                Console.WriteLine("Enter a position from 1 to 9 where you want to move");
+                position = Convert.ToInt32(Console.ReadLine());
+                if (board[position] == ' ')
+                    break;
+                else
+                    Console.WriteLine("The entered position is already occupied");
             }
         }
 
