@@ -11,7 +11,7 @@ namespace TicTacToeGame
             Console.WriteLine("Hello Tic Tac Toe");
             UC1_initialize();
             UC2_symbol();
-            
+            UC3_showBoard();
         }
 
         static void UC1_initialize()
@@ -30,6 +30,20 @@ namespace TicTacToeGame
             else
                 Console.WriteLine("Computer will play with: O");
 
+        }
+
+        static void UC3_showBoard()
+        {
+            int size = (int)Math.Sqrt(board.Length);
+            for (int i = 1; i < board.Length; i++)
+            {
+                Console.Write(board[i] + "|");
+                if (i % size == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("--------------------");
+                }
+            }
         }
 
     }
