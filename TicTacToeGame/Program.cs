@@ -8,7 +8,7 @@ namespace TicTacToeGame
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Tic Tac Toe");
-            
+            UC1_initialize();
             
         }
 
