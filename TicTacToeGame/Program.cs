@@ -7,6 +7,7 @@ namespace TicTacToeGame
         static char[] board = new char[10];
         static string choice = "";
         static int position = 0;
+        static bool userWins = false;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Tic Tac Toe");
@@ -14,6 +15,7 @@ namespace TicTacToeGame
             UC2_symbol();
             UC3_showBoard();
             movePosition();
+            toss();
         }
 
         static void UC1_initialize()
@@ -61,6 +63,18 @@ namespace TicTacToeGame
             }
             board[position] = Convert.ToChar(choice);
             UC3_showBoard();
+        }
+
+        static void toss()
+        {
+            Random ran = new Random();
+            int heads = ran.Next(0, 2);
+            if (heads == 0)
+                userWins = true;
+            if (userWins == true)
+                Console.WriteLine("User has won the toss");
+            else
+                Console.WriteLine("Computer has won the toss");
         }
 
     }
