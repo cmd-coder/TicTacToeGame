@@ -5,9 +5,10 @@ namespace TicTacToeGame
     class Program
     {
         static char[] board = new char[10];
-        static string choice = "";
+        static char choice = ' ';
         static int position = 0;
         static bool userWins = false;
+        static bool userWinsGame = false;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Tic Tac Toe");
@@ -16,6 +17,8 @@ namespace TicTacToeGame
             UC3_showBoard();
             movePosition();
             toss();
+            bool result = checkWinner(choice);
+            Console.WriteLine("User hass won: " + result);
         }
 
         static void UC1_initialize()
@@ -27,9 +30,9 @@ namespace TicTacToeGame
         static void UC2_symbol()
         {
             Console.WriteLine("Enter to choose O (capital o) or to choose X (capital x)");
-            choice = Console.ReadLine();
+            choice = Convert.ToChar(Console.ReadLine());
             Console.WriteLine("You will play with: " + choice);
-            if (choice == "O")
+            if (choice == 'O')
                 Console.WriteLine("Computer will play with: X");
             else
                 Console.WriteLine("Computer will play with: O");
@@ -61,7 +64,7 @@ namespace TicTacToeGame
                 else
                     Console.WriteLine("The entered position is already occupied");
             }
-            board[position] = Convert.ToChar(choice);
+            board[position] = choice;
             UC3_showBoard();
         }
 
@@ -75,6 +78,20 @@ namespace TicTacToeGame
                 Console.WriteLine("User has won the toss");
             else
                 Console.WriteLine("Computer has won the toss");
+        }
+
+        static bool checkWinner(char choice)
+        {
+            if ((board[1] == choice && board[2] == choice && board[3] == choice)
+                || (board[4] == choice && board[5] == choice && board[6] == choice)
+                || (board[7] == choice && board[8] == choice && board[9] == choice)
+                || (board[1] == choice && board[4] == choice && board[7] == choice)
+                || (board[2] == choice && board[5] == choice && board[8] == choice)
+                || (board[3] == choice && board[6] == choice && board[9] == choice)
+                || (board[1] == choice && board[5] == choice && board[9] == choice)
+                || (board[3] == choice && board[5] == choice && board[7] == choice))
+                return true;
+            return false;
         }
 
     }
