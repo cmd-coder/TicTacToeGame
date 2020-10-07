@@ -6,7 +6,7 @@ namespace TicTacToeGame
     {
         static char[] board = new char[10];
         static char choice = ' ';
-        static char computerChoice='X';
+        static char computerChoice = 'X';
         static int position = 0;
         static bool userWins = false;
         static bool userWinsGame = false;
@@ -16,10 +16,8 @@ namespace TicTacToeGame
             UC1_initialize();
             UC2_symbol();
             UC3_showBoard();
-            movePosition();
             toss();
-            bool result = checkWinner(choice);
-            Console.WriteLine("User hass won: " + result);
+            playGame();
         }
 
         static void UC1_initialize()
@@ -59,7 +57,7 @@ namespace TicTacToeGame
 
         static void movePosition()
         {
-            while(true)
+            while (true)
             {
                 Console.WriteLine("Enter a position from 1 to 9 where you want to move");
                 position = Convert.ToInt32(Console.ReadLine());
@@ -84,16 +82,16 @@ namespace TicTacToeGame
                 Console.WriteLine("Computer has won the toss");
         }
 
-        static bool checkWinner(char choice)
+        static bool checkWinner(char choiceChar)
         {
-            if ((board[1] == choice && board[2] == choice && board[3] == choice)
-                || (board[4] == choice && board[5] == choice && board[6] == choice)
-                || (board[7] == choice && board[8] == choice && board[9] == choice)
-                || (board[1] == choice && board[4] == choice && board[7] == choice)
-                || (board[2] == choice && board[5] == choice && board[8] == choice)
-                || (board[3] == choice && board[6] == choice && board[9] == choice)
-                || (board[1] == choice && board[5] == choice && board[9] == choice)
-                || (board[3] == choice && board[5] == choice && board[7] == choice))
+            if ((board[1] == choiceChar && board[2] == choiceChar && board[3] == choiceChar)
+                || (board[4] == choiceChar && board[5] == choiceChar && board[6] == choiceChar)
+                || (board[7] == choiceChar && board[8] == choiceChar && board[9] == choiceChar)
+                || (board[1] == choiceChar && board[4] == choiceChar && board[7] == choiceChar)
+                || (board[2] == choiceChar && board[5] == choiceChar && board[8] == choiceChar)
+                || (board[3] == choiceChar && board[6] == choiceChar && board[9] == choiceChar)
+                || (board[1] == choiceChar && board[5] == choiceChar && board[9] == choiceChar)
+                || (board[3] == choiceChar && board[5] == choiceChar && board[7] == choiceChar))
                 return true;
             return false;
         }
@@ -102,11 +100,11 @@ namespace TicTacToeGame
         {
             int index = whoWins(computerChoice);
             if (index != 0)
-                Console.WriteLine("Computer has won the match");
-            else
+                board[index] = computerChoice;
+            if (index == 0)
             {
                 index = whoWins(choice);
-                if(index!=0)
+                if (index != 0)
                 {
                     board[index] = computerChoice;
                 }
@@ -132,6 +130,7 @@ namespace TicTacToeGame
                         board[8] = computerChoice;
                 }
             }
+            UC3_showBoard();
         }
 
         static int whoWins(char option)
@@ -157,6 +156,42 @@ namespace TicTacToeGame
                 }
             }
             return index;
+        }
+
+        static void playGame()
+        {
+            int swap = 2;
+            bool matchTied = true;
+            if (userWins)
+                swap = 1;
+            for (int i = 1; i < 10; i++)
+            {
+                Console.WriteLine("\n");
+                if (swap == 2)
+                {
+                    swap--;
+                    computerTurn();
+                    if (checkWinner(computerChoice))
+                    {
+                        matchTied = false;
+                        Console.WriteLine("Computer has won the match");
+                        break;
+                    }
+                }
+                else
+                {
+                    swap++;
+                    movePosition();
+                    if (checkWinner(choice))
+                    {
+                        matchTied = false;
+                        Console.WriteLine("User has won the match");
+                        break;
+                    }
+                }
+            }
+            if (matchTied)
+                Console.WriteLine("Match tied");
         }
 
     }
