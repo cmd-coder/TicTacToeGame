@@ -100,17 +100,32 @@ namespace TicTacToeGame
 
         static void computerTurn()
         {
-            int index = 0;
-            for(int i=1;i<board.Length;i++)
+            int index = whoWins(computerChoice);
+            if (index != 0)
+                Console.WriteLine("Computer has won the match");
+            else
             {
-                if(board[i]==' ')
+                index = whoWins(choice);
+                if(index!=0)
                 {
-                    board[i] = computerChoice;
-                    bool compWins = checkWinner(computerChoice);
-                    if(compWins)
+                    board[index] = computerChoice;
+                }
+            }
+        }
+
+        static int whoWins(char option)
+        {
+            int index = 0;
+            for (int i = 1; i < board.Length; i++)
+            {
+                if (board[i] == ' ')
+                {
+                    board[i] = option;
+                    bool compWins = checkWinner(option);
+                    if (compWins)
                     {
                         index = i;
-                        //board[i] = ' ';
+                        board[i] = ' ';
                         break;
                     }
                     else
@@ -120,8 +135,7 @@ namespace TicTacToeGame
                     }
                 }
             }
-            if (index != 0)
-                Console.WriteLine("Computer has won the match");
+            return index;
         }
 
     }
