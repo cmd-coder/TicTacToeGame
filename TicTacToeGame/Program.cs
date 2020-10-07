@@ -6,6 +6,7 @@ namespace TicTacToeGame
     {
         static char[] board = new char[10];
         static char choice = ' ';
+        static char computerChoice='X';
         static int position = 0;
         static bool userWins = false;
         static bool userWinsGame = false;
@@ -35,7 +36,10 @@ namespace TicTacToeGame
             if (choice == 'O')
                 Console.WriteLine("Computer will play with: X");
             else
+            {
                 Console.WriteLine("Computer will play with: O");
+                computerChoice = 'O';
+            }
 
         }
 
@@ -92,6 +96,32 @@ namespace TicTacToeGame
                 || (board[3] == choice && board[5] == choice && board[7] == choice))
                 return true;
             return false;
+        }
+
+        static void computerTurn()
+        {
+            int index = 0;
+            for(int i=1;i<board.Length;i++)
+            {
+                if(board[i]==' ')
+                {
+                    board[i] = computerChoice;
+                    bool compWins = checkWinner(computerChoice);
+                    if(compWins)
+                    {
+                        index = i;
+                        //board[i] = ' ';
+                        break;
+                    }
+                    else
+                    {
+                        board[i] = ' ';
+                        continue;
+                    }
+                }
+            }
+            if (index != 0)
+                Console.WriteLine("Computer has won the match");
         }
 
     }
