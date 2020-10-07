@@ -110,6 +110,17 @@ namespace TicTacToeGame
                 {
                     board[index] = computerChoice;
                 }
+                else
+                {
+                    if (board[1] == ' ')
+                        board[1] = computerChoice;
+                    else if (board[3] == ' ')
+                        board[3] = computerChoice;
+                    else if (board[7] == ' ')
+                        board[7] = computerChoice;
+                    else if (board[9] == ' ')
+                        board[9] = computerChoice;
+                }
             }
         }
 
