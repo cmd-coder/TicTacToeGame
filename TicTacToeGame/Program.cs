@@ -12,12 +12,19 @@ namespace TicTacToeGame
         static bool userWinsGame = false;
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Tic Tac Toe");
-            UC1_initialize();
-            UC2_symbol();
-            UC3_showBoard();
-            toss();
-            playGame();
+            while (true)
+            {
+                Console.WriteLine("Hello Tic Tac Toe");
+                UC1_initialize();
+                UC2_symbol();
+                UC3_showBoard();
+                toss();
+                playGame();
+                Console.WriteLine("Enter 1 to play the game again and 2 to exit");
+                int gameAgain = Convert.ToInt32(Console.ReadLine());
+                if (gameAgain != 1)
+                    break;
+            }
         }
 
         static void UC1_initialize()
