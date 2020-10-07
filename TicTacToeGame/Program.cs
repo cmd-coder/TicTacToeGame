@@ -120,6 +120,16 @@ namespace TicTacToeGame
                         board[7] = computerChoice;
                     else if (board[9] == ' ')
                         board[9] = computerChoice;
+                    else if (board[5] == ' ')
+                        board[5] = computerChoice;
+                    else if (board[2] == ' ')
+                        board[2] = computerChoice;
+                    else if (board[4] == ' ')
+                        board[4] = computerChoice;
+                    else if (board[6] == ' ')
+                        board[6] = computerChoice;
+                    else if (board[8] == ' ')
+                        board[8] = computerChoice;
                 }
             }
         }
